@@ -1,7 +1,5 @@
 package empapp;
 
-import java.util.Arrays;
-
 public class EmployeeConverter {
 
     public Employee convert(CreateEmployeeCommand command) {

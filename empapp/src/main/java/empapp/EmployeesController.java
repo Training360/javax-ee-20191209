@@ -12,6 +12,9 @@ public class EmployeesController {
     @Inject
     private EmployeeService employeeService;
 
+    @Inject
+    private Messages messages;
+
     private List<EmployeeDto> employees;
 
     private CreateEmployeeCommand command = new CreateEmployeeCommand();
@@ -27,7 +30,7 @@ public class EmployeesController {
 
     public String addEmployee() {
         employeeService.createEmployee(command);
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("successMessage", "Employee has created");
+        messages.addFlashMessage("Employee has created");
         return "employees.xhtml?faces-redirect=true";
     }
 
