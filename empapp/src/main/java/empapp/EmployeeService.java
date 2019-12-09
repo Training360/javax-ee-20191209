@@ -14,14 +14,19 @@ public class EmployeeService {
     private EmployeeDao employeeDao;
 
     @Inject
+    private NameTrimmer nameTrimmer;
+
+    @Inject
     private LogEntryService logEntryService;
 
     @Transactional
     public void createEmployee(CreateEmployeeCommand command) {
+        String name = nameTrimmer.trimName(command.getName());
         logEntryService.createLogEntry("Create employee with name "
-                + command.getName());
+                + name);
 
-        if (!employeeDao.existsEmployeeWithName(command.getName())) {
+        if (!employeeDao.existsEmployeeWithName(name)) {
+            command.setName(name);
             Employee employee = new EmployeeConverter().convert(command);
             employeeDao.insertEmployee(employee);
         }
