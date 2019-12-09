@@ -1,6 +1,7 @@
 package empapp;
 
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
