@@ -51,9 +51,10 @@ public class EmployeeDaoIT {
 
 //     @Before
      public void empty() throws SQLException{
+         var conn = dataSource.getConnection();
+         var stmt = conn.prepareStatement("delete from employee");
          try (
-                 var conn = dataSource.getConnection();
-                 var stmt = conn.prepareStatement("delete from employee")
+                 conn;stmt
          ) {
              var count = stmt.executeUpdate();
              System.out.println("Deleted: " + count);
