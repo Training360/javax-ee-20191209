@@ -35,7 +35,7 @@ public class EmployeeService {
     public List<EmployeeDto> listEmployees() {
         return employeeDao.listEmployees()
                 .stream()
-                .map(e -> new EmployeeDto(e.getId(), e.getName()))
+                .map(e -> new EmployeeDto(e.getId(), e.getName(), e.getSkills()))
                 .collect(Collectors.toList());
     }
 

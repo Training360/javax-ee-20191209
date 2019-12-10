@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@NamedQuery(name = "listEmployee", query = "select distinct e from Employee e")
+@NamedQuery(name = "listEmployee", query = "select distinct e from Employee e left join fetch e.skills")
 public class Employee {
 
     @Id
@@ -18,6 +18,9 @@ public class Employee {
     private Long id;
 
     private String name;
+
+    @ElementCollection
+    private List<String> skills;
 
     public Employee(String name) {
         this.name = name;

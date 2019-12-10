@@ -15,4 +15,6 @@ public class EmployeeDto {
 
     private String name;
 
+    private List<String> skills;
+
 }
