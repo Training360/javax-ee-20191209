@@ -11,12 +11,16 @@ import javax.jms.TextMessage;
         @ActivationConfigProperty(
                 propertyName = "destination",
                 propertyValue = "java:/jms/queue/EmployeeQueue"
-        )
+        ),
+        @ActivationConfigProperty(
+                propertyName = "messageSelector",
+                propertyValue = "type = 'create-employee'")
 })
 public class EmployeeMDB implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
+        System.out.println("Try to get message");
         if (message instanceof TextMessage) {
             TextMessage textMessage = (TextMessage) message;
             try {
