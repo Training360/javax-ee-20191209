@@ -22,13 +22,13 @@ public class EmployeeServiceTest {
     EmployeeService employeeService;
 
     @Test
-    void test_Create_Employee_Should_Insert() {
+    void test_Create_Employee_Should_Insert() throws Exception {
         employeeService.createEmployee(new CreateEmployeeCommand("John Doe"));
         verify(employeeDao).insertEmployee(argThat(e -> e.getName().equals("John Doe")));
     }
 
     @Test
-    void test_Create_Employee_Should_Log() {
+    void test_Create_Employee_Should_Log() throws Exception {
         employeeService.createEmployee(new CreateEmployeeCommand("John Doe"));
         verify(logEntryService).createLogEntry(argThat(s -> s.startsWith("Create") &&
                 s.contains("John Doe")));

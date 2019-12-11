@@ -29,7 +29,11 @@ public class EmployeesController {
     }
 
     public String addEmployee() {
-        employeeService.createEmployee(command);
+        try {
+            employeeService.createEmployee(command);
+        } catch (InvalidEmployeeException e) {
+            e.printStackTrace();
+        }
         messages.addFlashMessage("Employee has created");
         return "employees.xhtml?faces-redirect=true";
     }

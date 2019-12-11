@@ -24,7 +24,7 @@ public class EmployeesControllerTest {
     EmployeesController employeesController;
 
     @Test
-    void testCreateEmployee() {
+    void testCreateEmployee() throws Exception {
         employeesController.getCommand().setName("John Doe");
         String target = employeesController.addEmployee();
 

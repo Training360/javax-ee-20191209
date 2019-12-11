@@ -23,3 +23,11 @@ data-source add --name=EmployeeDS --jndi-name=java:/jdbc/EmployeeDS \
 /subsystem=datasources:read-resource(recursive=true)
 ```
 
+```
+standalone.bat -c=standalone-full.xml
+
+jms-queue add --queue-address=EmployeeQueue --entries=java:/jms/queue/EmployeeQueue,java:jboss/exported/queue/EmployeeQueue
+
+jms-queue count-messages --queue-address=EmployeeQueue
+jms-queue list-messages-as-json --queue-address=EmployeeQueue
+```
