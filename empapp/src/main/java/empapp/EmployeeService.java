@@ -19,6 +19,9 @@ public class EmployeeService {
     @Inject
     private LogEntryService logEntryService;
 
+    @Inject
+    private EmployeeMessageSender employeeMessageSender;
+
     @Transactional
     public void createEmployee(CreateEmployeeCommand command){
         String name = nameTrimmer.trimName(command.getName());
@@ -29,6 +32,8 @@ public class EmployeeService {
             command.setName(name);
             Employee employee = new EmployeeConverter().convert(command);
             employeeDao.insertEmployee(employee);
+
+            employeeMessageSender.sendMessage("Employee has created: " + command.getName());
         }
     }
 
