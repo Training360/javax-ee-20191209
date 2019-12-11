@@ -21,11 +21,7 @@ public class EmployeeResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Status createEmployee(CreateEmployeeCommand command) {
-        try {
             employeeService.createEmployee(command);
-        } catch (InvalidEmployeeException e) {
-            e.printStackTrace();
-        }
         return new Status("ok");
     }
 

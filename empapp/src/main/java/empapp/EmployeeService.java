@@ -20,10 +20,7 @@ public class EmployeeService {
     private LogEntryService logEntryService;
 
     @Transactional
-    public void createEmployee(CreateEmployeeCommand command)
-        throws InvalidEmployeeException{
-
-
+    public void createEmployee(CreateEmployeeCommand command){
         String name = nameTrimmer.trimName(command.getName());
         logEntryService.createLogEntry("Create employee with name "
                 + name);
@@ -33,7 +30,6 @@ public class EmployeeService {
             Employee employee = new EmployeeConverter().convert(command);
             employeeDao.insertEmployee(employee);
         }
-        throw new InvalidEmployeeException();
     }
 
     public List<EmployeeDto> listEmployees() {
